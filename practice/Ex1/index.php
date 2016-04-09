@@ -14,16 +14,22 @@
     	<td>&nbsp;</td>
  	</tr>
 <?php
-
+	$link=mysqli_connect("localhost", "ner", "nerner","ner");
+	mysqli_query($link, "SET NAMES UTF8");
+	$query="select * from ex1";
+	$result=mysqli_query($link, $query);
+	mysqli_close($link);
+	
+	while($row=mysqli_fetch_array($result)){
 ?>
 	<tr>
-    	<td><?php ?></td>
-    	<td><?php ?></td>
-    	<td><a href="update.php?t_index=<?php ?>">修改</a></td>
-    	<td><a href="del.php?t_index=<?php ?>">刪除</a></td>
+    	<td><?php echo $row["t_name"]?></td>
+    	<td><?php echo $row["t_phone"]?></td>
+    	<td><a href="update.php?t_index=<?php echo $row["t_index"] ?>">修改</a></td>
+    	<td><a href="del.php?t_index=<?php echo $row["t_index"]?>">刪除</a></td>
  	</tr>
 <?php 
-
+	}
 ?>
 	<tr>
     	<td><input name="name" type="text" maxlength="6" /></td>
